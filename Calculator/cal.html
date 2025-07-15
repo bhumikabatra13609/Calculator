@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: rgb(243, 199, 238);
+    }
+    #calculator {
+      display: inline-block;
+      border: 2px solid #444;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      background: #e8f537;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-align: right;
+      border-radius: 5px;
+    }
+    button {
+      width: 60px;
+      height: 60px;
+      font-size: 20px;
+      margin: 5px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button.operator {
+      background-color: #1cf2f9;
+    }
+    button.equal {
+      background-color: #08e908;
+      color: white;
+    }
+    button.clear {
+      background-color: #d9534f;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="calculator">
+    <input type="text" id="display" readonly>
+    <br>
+    <button onclick="appendValue('7')">7</button>
+    <button onclick="appendValue('8')">8</button>
+    <button onclick="appendValue('9')">9</button>
+    <button class="operator" onclick="appendValue('/')">/</button>
+    <br>
+    <button onclick="appendValue('4')">4</button>
+    <button onclick="appendValue('5')">5</button>
+    <button onclick="appendValue('6')">6</button>
+    <button class="operator" onclick="appendValue('*')">*</button>
+    <br>
+    <button onclick="appendValue('1')">1</button>
+    <button onclick="appendValue('2')">2</button>
+    <button onclick="appendValue('3')">3</button>
+    <button class="operator" onclick="appendValue('-')">-</button>
+    <br>
+    <button onclick="appendValue('0')">0</button>
+    <button onclick="appendValue('.')">.</button>
+    <button class="equal" onclick="calculate()">=</button>
+    <button class="operator" onclick="appendValue('+')">+</button>
+    <br>
+    <button class="clear" onclick="clearDisplay()" style="width: 255px;">C</button>
+  </div>
+
+  <script>
+    function appendValue(val) {
+      document.getElementById("display").value += val;
+    }
+
+    function calculate() {
+      try {
+        const result = eval(document.getElementById("display").value);
+        document.getElementById("display").value = result;
+      } catch {
+        document.getElementById("display").value = "Error";
+      }
+    }
+
+    function clearDisplay() {
+      document.getElementById("display").value = "";
+    }
+  </script>
+
+</body>
+</html>
